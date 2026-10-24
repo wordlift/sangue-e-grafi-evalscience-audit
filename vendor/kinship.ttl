@@ -1,0 +1,87 @@
+@prefix ex: <http://example.org/kinship#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/kinship> a owl:Ontology ;
+    rdfs:label "Sangue e Grafi – Kinship Ontology" .
+
+ex:age a owl:DatatypeProperty ;
+    rdfs:label "age" ;
+    rdfs:domain ex:Person ;
+    rdfs:range xsd:integer .
+
+ex:assetName a owl:DatatypeProperty ;
+    rdfs:label "assetName" ;
+    rdfs:domain ex:Asset ;
+    rdfs:range xsd:string .
+
+ex:assetValue a owl:DatatypeProperty ;
+    rdfs:label "assetValue" ;
+    rdfs:domain ex:Asset ;
+    rdfs:range xsd:decimal .
+
+ex:belongsTo a owl:ObjectProperty ;
+    rdfs:label "belongs to" ;
+    rdfs:domain ex:Asset ;
+    rdfs:range ex:Person .
+
+ex:clausePriority a owl:DatatypeProperty ;
+    rdfs:label "clausePriority" ;
+    rdfs:domain ex:WillClause ;
+    rdfs:range xsd:integer .
+
+ex:clauseText a owl:DatatypeProperty ;
+    rdfs:label "clauseText" ;
+    rdfs:domain ex:WillClause ;
+    rdfs:range xsd:string .
+
+ex:excludesRelationType a owl:ObjectProperty ;
+    rdfs:label "excludes relation type" ;
+    rdfs:domain ex:WillClause .
+
+ex:fullName a owl:DatatypeProperty ;
+    rdfs:label "fullName" ;
+    rdfs:domain ex:Person ;
+    rdfs:range xsd:string .
+
+ex:hasBiologicalParent a owl:ObjectProperty ;
+    rdfs:label "has biological parent" ;
+    rdfs:domain ex:Person ;
+    rdfs:range ex:Person ;
+    owl:inverseOf ex:isBiologicalParentOf .
+
+ex:isAlive a owl:DatatypeProperty ;
+    rdfs:label "isAlive" ;
+    rdfs:domain ex:Person ;
+    rdfs:range xsd:boolean .
+
+ex:isMarriedTo a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "is married to" ;
+    rdfs:domain ex:Person ;
+    rdfs:range ex:Person .
+
+ex:requiresRelationType a owl:ObjectProperty ;
+    rdfs:label "requires relation type" ;
+    rdfs:domain ex:WillClause .
+
+ex:stipulatesCondition a owl:ObjectProperty ;
+    rdfs:label "stipulates condition on" ;
+    rdfs:domain ex:WillClause ;
+    rdfs:range ex:Person .
+
+ex:isBiologicalParentOf a owl:ObjectProperty ;
+    rdfs:label "is biological parent of" ;
+    rdfs:domain ex:Person ;
+    rdfs:range ex:Person .
+
+ex:Asset a owl:Class ;
+    rdfs:label "Asset" .
+
+ex:WillClause a owl:Class ;
+    rdfs:label "WillClause" .
+
+ex:Person a owl:Class ;
+    rdfs:label "Person" .
+

@@ -1,0 +1,4866 @@
+{
+  "commit": "bb7344811e45625b558d60c02df183f23b8a8fcb",
+  "fixture_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+  "python": "3.14.2",
+  "main_cases": [
+    {
+      "id": "complete_witness",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"B\" property=\"isBiologicalParentOf\" />\n<action tool=\"get_entity\" entity=\"C\" />\n<action tool=\"get_entity\" entity=\"D\" />\n<action tool=\"get_entity\" entity=\"E\" />\n<answer>Carla</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "B",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#C",
+              "target_label": "Carla"
+            },
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#D",
+              "target_label": "Dario"
+            },
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#E",
+              "target_label": "Elena"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "C"
+          },
+          "observation": {
+            "age": 30,
+            "fullName": "Carla",
+            "iri": "http://example.org/kinship#C",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "D"
+          },
+          "observation": {
+            "age": 20,
+            "fullName": "Dario",
+            "iri": "http://example.org/kinship#D",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 4,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "E"
+          },
+          "observation": {
+            "age": 40,
+            "fullName": "Elena",
+            "iri": "http://example.org/kinship#E",
+            "isAlive": false,
+            "type": "http://example.org/kinship#Person"
+          }
+        }
+      ],
+      "reward": 9.5,
+      "components": {
+        "format": 1.0,
+        "ontology": 2.0,
+        "answer": 5.0,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Carla",
+      "correct": true,
+      "calls": 5,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": true,
+        "attribute_coverage": true,
+        "evidence_sufficient": true,
+        "derived_answer": "Carla",
+        "strict_success": true
+      }
+    },
+    {
+      "id": "get_only_witness",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"get_entity\" entity=\"A\" />\n<action tool=\"get_entity\" entity=\"B\" />\n<action tool=\"get_entity\" entity=\"C\" />\n<action tool=\"get_entity\" entity=\"D\" />\n<action tool=\"get_entity\" entity=\"E\" />\n<answer>Carla</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "A"
+          },
+          "observation": {
+            "age": 85,
+            "fullName": "Aldo",
+            "iri": "http://example.org/kinship#A",
+            "isAlive": false,
+            "isBiologicalParentOf": "http://example.org/kinship#B",
+            "isMarriedTo": "http://example.org/kinship#S",
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "B"
+          },
+          "observation": {
+            "age": 60,
+            "fullName": "Bruno",
+            "iri": "http://example.org/kinship#B",
+            "isAlive": true,
+            "isBiologicalParentOf": [
+              "http://example.org/kinship#C",
+              "http://example.org/kinship#D",
+              "http://example.org/kinship#E"
+            ],
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "C"
+          },
+          "observation": {
+            "age": 30,
+            "fullName": "Carla",
+            "iri": "http://example.org/kinship#C",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "D"
+          },
+          "observation": {
+            "age": 20,
+            "fullName": "Dario",
+            "iri": "http://example.org/kinship#D",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 4,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "E"
+          },
+          "observation": {
+            "age": 40,
+            "fullName": "Elena",
+            "iri": "http://example.org/kinship#E",
+            "isAlive": false,
+            "type": "http://example.org/kinship#Person"
+          }
+        }
+      ],
+      "reward": 3.0,
+      "components": {
+        "format": 1.0,
+        "ontology": 0,
+        "answer": 0.5,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Carla",
+      "correct": true,
+      "calls": 5,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": true,
+        "attribute_coverage": true,
+        "evidence_sufficient": true,
+        "derived_answer": "Carla",
+        "strict_success": true
+      }
+    },
+    {
+      "id": "nonexistent_sources",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"Ghost1\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"Ghost2\" property=\"isBiologicalParentOf\" />\n<action tool=\"get_entity\" entity=\"C\" />\n<action tool=\"get_entity\" entity=\"D\" />\n<action tool=\"get_entity\" entity=\"E\" />\n<answer>Carla</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "Ghost1",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": []
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "Ghost2",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": []
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "C"
+          },
+          "observation": {
+            "age": 30,
+            "fullName": "Carla",
+            "iri": "http://example.org/kinship#C",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "D"
+          },
+          "observation": {
+            "age": 20,
+            "fullName": "Dario",
+            "iri": "http://example.org/kinship#D",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 4,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "E"
+          },
+          "observation": {
+            "age": 40,
+            "fullName": "Elena",
+            "iri": "http://example.org/kinship#E",
+            "isAlive": false,
+            "type": "http://example.org/kinship#Person"
+          }
+        }
+      ],
+      "reward": 9.5,
+      "components": {
+        "format": 1.0,
+        "ontology": 2.0,
+        "answer": 5.0,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Carla",
+      "correct": true,
+      "calls": 5,
+      "verification": {
+        "authentic": true,
+        "execution_ok": false,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "disconnected_sources",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"U\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"V\" property=\"isBiologicalParentOf\" />\n<action tool=\"get_entity\" entity=\"C\" />\n<action tool=\"get_entity\" entity=\"D\" />\n<action tool=\"get_entity\" entity=\"E\" />\n<answer>Carla</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "U",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#V",
+              "target_label": "Valerio"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "V",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#W",
+              "target_label": "Walter"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "C"
+          },
+          "observation": {
+            "age": 30,
+            "fullName": "Carla",
+            "iri": "http://example.org/kinship#C",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "D"
+          },
+          "observation": {
+            "age": 20,
+            "fullName": "Dario",
+            "iri": "http://example.org/kinship#D",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 4,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "E"
+          },
+          "observation": {
+            "age": 40,
+            "fullName": "Elena",
+            "iri": "http://example.org/kinship#E",
+            "isAlive": false,
+            "type": "http://example.org/kinship#Person"
+          }
+        }
+      ],
+      "reward": 9.5,
+      "components": {
+        "format": 1.0,
+        "ontology": 2.0,
+        "answer": 5.0,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Carla",
+      "correct": true,
+      "calls": 5,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "unknown_tool",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"invented_tool\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"invented_tool\" entity=\"B\" property=\"isBiologicalParentOf\" />\n<action tool=\"get_entity\" entity=\"C\" />\n<action tool=\"get_entity\" entity=\"D\" />\n<action tool=\"get_entity\" entity=\"E\" />\n<answer>Carla</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "invented_tool",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": {
+            "error": "unsupported_tool"
+          }
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "invented_tool",
+            "entity": "B",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": {
+            "error": "unsupported_tool"
+          }
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "C"
+          },
+          "observation": {
+            "age": 30,
+            "fullName": "Carla",
+            "iri": "http://example.org/kinship#C",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "D"
+          },
+          "observation": {
+            "age": 20,
+            "fullName": "Dario",
+            "iri": "http://example.org/kinship#D",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 4,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "E"
+          },
+          "observation": {
+            "age": 40,
+            "fullName": "Elena",
+            "iri": "http://example.org/kinship#E",
+            "isAlive": false,
+            "type": "http://example.org/kinship#Person"
+          }
+        }
+      ],
+      "reward": 9.5,
+      "components": {
+        "format": 1.0,
+        "ontology": 2.0,
+        "answer": 5.0,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Carla",
+      "correct": true,
+      "calls": 5,
+      "verification": {
+        "authentic": true,
+        "execution_ok": false,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "omit_all_attributes",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"B\" property=\"isBiologicalParentOf\" />\n<answer>Carla</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "B",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#C",
+              "target_label": "Carla"
+            },
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#D",
+              "target_label": "Dario"
+            },
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#E",
+              "target_label": "Elena"
+            }
+          ]
+        }
+      ],
+      "reward": 9.5,
+      "components": {
+        "format": 1.0,
+        "ontology": 2.0,
+        "answer": 5.0,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Carla",
+      "correct": true,
+      "calls": 2,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": true,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "omit_competitor",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"B\" property=\"isBiologicalParentOf\" />\n<action tool=\"get_entity\" entity=\"C\" />\n<action tool=\"get_entity\" entity=\"E\" />\n<answer>Carla</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "B",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#C",
+              "target_label": "Carla"
+            },
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#D",
+              "target_label": "Dario"
+            },
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#E",
+              "target_label": "Elena"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "C"
+          },
+          "observation": {
+            "age": 30,
+            "fullName": "Carla",
+            "iri": "http://example.org/kinship#C",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "E"
+          },
+          "observation": {
+            "age": 40,
+            "fullName": "Elena",
+            "iri": "http://example.org/kinship#E",
+            "isAlive": false,
+            "type": "http://example.org/kinship#Person"
+          }
+        }
+      ],
+      "reward": 9.5,
+      "components": {
+        "format": 1.0,
+        "ontology": 2.0,
+        "answer": 5.0,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Carla",
+      "correct": true,
+      "calls": 4,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": true,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "blind_correct",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<answer>Carla</answer>",
+      "events": [],
+      "reward": 2.0,
+      "components": {
+        "format": 1.0,
+        "ontology": 0,
+        "answer": 0.5,
+        "efficiency": 0.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Carla",
+      "correct": true,
+      "calls": 0,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "mention_correct",
+      "completion": "<reasoning>Use isBiologicalParentOf.</reasoning>\n<answer>Carla</answer>",
+      "events": [],
+      "reward": 2.5,
+      "components": {
+        "format": 1.0,
+        "ontology": 0,
+        "answer": 1.0,
+        "efficiency": 0.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Carla",
+      "correct": true,
+      "calls": 0,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "wrong_answer",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"B\" property=\"isBiologicalParentOf\" />\n<action tool=\"get_entity\" entity=\"C\" />\n<action tool=\"get_entity\" entity=\"D\" />\n<action tool=\"get_entity\" entity=\"E\" />\n<answer>Sofia</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "B",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#C",
+              "target_label": "Carla"
+            },
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#D",
+              "target_label": "Dario"
+            },
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#E",
+              "target_label": "Elena"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "C"
+          },
+          "observation": {
+            "age": 30,
+            "fullName": "Carla",
+            "iri": "http://example.org/kinship#C",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "D"
+          },
+          "observation": {
+            "age": 20,
+            "fullName": "Dario",
+            "iri": "http://example.org/kinship#D",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 4,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "get_entity",
+            "entity": "E"
+          },
+          "observation": {
+            "age": 40,
+            "fullName": "Elena",
+            "iri": "http://example.org/kinship#E",
+            "isAlive": false,
+            "type": "http://example.org/kinship#Person"
+          }
+        }
+      ],
+      "reward": 3.5,
+      "components": {
+        "format": 1.0,
+        "ontology": 2.0,
+        "answer": -1.0,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Sofia",
+      "correct": false,
+      "calls": 5,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": true,
+        "attribute_coverage": true,
+        "evidence_sufficient": true,
+        "derived_answer": "Carla",
+        "strict_success": false
+      }
+    },
+    {
+      "id": "excluded_spouse",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isMarriedTo\" />\n<answer>Sofia</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isMarriedTo"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isMarriedTo",
+              "target_iri": "http://example.org/kinship#S",
+              "target_label": "Sofia"
+            }
+          ]
+        }
+      ],
+      "reward": 0.0,
+      "components": {
+        "format": 1.0,
+        "ontology": -3.0,
+        "answer": -1.0,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 1.5
+      },
+      "gold": "Carla",
+      "predicted": "Sofia",
+      "correct": false,
+      "calls": 1,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "repeat10_wrong",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<answer>Sofia</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        }
+      ],
+      "reward": 10.0,
+      "components": {
+        "format": 1.0,
+        "ontology": 10.0,
+        "answer": -1.0,
+        "efficiency": 0.0,
+        "termination": 0.0,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Sofia",
+      "correct": false,
+      "calls": 10,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "repeat10_correct",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<answer>Carla</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        }
+      ],
+      "reward": 16.0,
+      "components": {
+        "format": 1.0,
+        "ontology": 10.0,
+        "answer": 5.0,
+        "efficiency": 0.0,
+        "termination": 0.0,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Carla",
+      "correct": true,
+      "calls": 10,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    }
+  ],
+  "repetition_sweep": [
+    {
+      "id": "repeat_1_Carla",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<answer>Carla</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        }
+      ],
+      "reward": 8.5,
+      "components": {
+        "format": 1.0,
+        "ontology": 1.0,
+        "answer": 5.0,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Carla",
+      "correct": true,
+      "calls": 1,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "repeat_1_Sofia",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<answer>Sofia</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        }
+      ],
+      "reward": 2.5,
+      "components": {
+        "format": 1.0,
+        "ontology": 1.0,
+        "answer": -1.0,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Sofia",
+      "correct": false,
+      "calls": 1,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "repeat_2_Carla",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<answer>Carla</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        }
+      ],
+      "reward": 9.5,
+      "components": {
+        "format": 1.0,
+        "ontology": 2.0,
+        "answer": 5.0,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Carla",
+      "correct": true,
+      "calls": 2,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "repeat_2_Sofia",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<answer>Sofia</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        }
+      ],
+      "reward": 3.5,
+      "components": {
+        "format": 1.0,
+        "ontology": 2.0,
+        "answer": -1.0,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Sofia",
+      "correct": false,
+      "calls": 2,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "repeat_4_Carla",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<answer>Carla</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        }
+      ],
+      "reward": 11.5,
+      "components": {
+        "format": 1.0,
+        "ontology": 4.0,
+        "answer": 5.0,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Carla",
+      "correct": true,
+      "calls": 4,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "repeat_4_Sofia",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<answer>Sofia</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        }
+      ],
+      "reward": 5.5,
+      "components": {
+        "format": 1.0,
+        "ontology": 4.0,
+        "answer": -1.0,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Sofia",
+      "correct": false,
+      "calls": 4,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "repeat_8_Carla",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<answer>Carla</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        }
+      ],
+      "reward": 14.0,
+      "components": {
+        "format": 1.0,
+        "ontology": 8.0,
+        "answer": 5.0,
+        "efficiency": 0.0,
+        "termination": 0.0,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Carla",
+      "correct": true,
+      "calls": 8,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "repeat_8_Sofia",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<answer>Sofia</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        }
+      ],
+      "reward": 8.0,
+      "components": {
+        "format": 1.0,
+        "ontology": 8.0,
+        "answer": -1.0,
+        "efficiency": 0.0,
+        "termination": 0.0,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Sofia",
+      "correct": false,
+      "calls": 8,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "repeat_10_Carla",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<answer>Carla</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        }
+      ],
+      "reward": 16.0,
+      "components": {
+        "format": 1.0,
+        "ontology": 10.0,
+        "answer": 5.0,
+        "efficiency": 0.0,
+        "termination": 0.0,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Carla",
+      "correct": true,
+      "calls": 10,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "repeat_10_Sofia",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<answer>Sofia</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        }
+      ],
+      "reward": 10.0,
+      "components": {
+        "format": 1.0,
+        "ontology": 10.0,
+        "answer": -1.0,
+        "efficiency": 0.0,
+        "termination": 0.0,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Sofia",
+      "correct": false,
+      "calls": 10,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "repeat_16_Carla",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<answer>Carla</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 11,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 13,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 14,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 15,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        }
+      ],
+      "reward": 22.0,
+      "components": {
+        "format": 1.0,
+        "ontology": 16.0,
+        "answer": 5.0,
+        "efficiency": 0.0,
+        "termination": 0.0,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Carla",
+      "correct": true,
+      "calls": 16,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "repeat_16_Sofia",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<answer>Sofia</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 11,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 13,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 14,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 15,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        }
+      ],
+      "reward": 16.0,
+      "components": {
+        "format": 1.0,
+        "ontology": 16.0,
+        "answer": -1.0,
+        "efficiency": 0.0,
+        "termination": 0.0,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Sofia",
+      "correct": false,
+      "calls": 16,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "repeat_32_Carla",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<answer>Carla</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 11,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 13,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 14,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 15,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 16,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 17,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 18,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 19,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 20,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 21,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 22,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 23,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 24,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 25,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 26,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 27,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 28,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 29,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 30,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 31,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        }
+      ],
+      "reward": 38.0,
+      "components": {
+        "format": 1.0,
+        "ontology": 32.0,
+        "answer": 5.0,
+        "efficiency": 0.0,
+        "termination": 0.0,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Carla",
+      "correct": true,
+      "calls": 32,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    },
+    {
+      "id": "repeat_32_Sofia",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<answer>Sofia</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 11,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 13,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 14,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 15,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 16,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 17,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 18,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 19,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 20,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 21,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 22,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 23,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 24,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 25,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 26,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 27,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 28,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 29,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 30,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 31,
+          "graph_sha256": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        }
+      ],
+      "reward": 32.0,
+      "components": {
+        "format": 1.0,
+        "ontology": 32.0,
+        "answer": -1.0,
+        "efficiency": 0.0,
+        "termination": 0.0,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Carla",
+      "predicted": "Sofia",
+      "correct": false,
+      "calls": 32,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": false,
+        "attribute_coverage": false,
+        "evidence_sufficient": false,
+        "derived_answer": null,
+        "strict_success": false
+      }
+    }
+  ],
+  "counterfactuals": [
+    {
+      "id": "D_age_Carla",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"B\" property=\"isBiologicalParentOf\" />\n<action tool=\"get_entity\" entity=\"C\" />\n<action tool=\"get_entity\" entity=\"D\" />\n<action tool=\"get_entity\" entity=\"E\" />\n<answer>Carla</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "c01688660a0ed43cf522af4ceba1de1d79adfdb5ec2b24755c8dcf9d8d5b46f3",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "c01688660a0ed43cf522af4ceba1de1d79adfdb5ec2b24755c8dcf9d8d5b46f3",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "B",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#C",
+              "target_label": "Carla"
+            },
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#D",
+              "target_label": "Dario"
+            },
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#E",
+              "target_label": "Elena"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "c01688660a0ed43cf522af4ceba1de1d79adfdb5ec2b24755c8dcf9d8d5b46f3",
+          "action": {
+            "tool": "get_entity",
+            "entity": "C"
+          },
+          "observation": {
+            "age": 30,
+            "fullName": "Carla",
+            "iri": "http://example.org/kinship#C",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 3,
+          "graph_sha256": "c01688660a0ed43cf522af4ceba1de1d79adfdb5ec2b24755c8dcf9d8d5b46f3",
+          "action": {
+            "tool": "get_entity",
+            "entity": "D"
+          },
+          "observation": {
+            "age": 35,
+            "fullName": "Dario",
+            "iri": "http://example.org/kinship#D",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 4,
+          "graph_sha256": "c01688660a0ed43cf522af4ceba1de1d79adfdb5ec2b24755c8dcf9d8d5b46f3",
+          "action": {
+            "tool": "get_entity",
+            "entity": "E"
+          },
+          "observation": {
+            "age": 40,
+            "fullName": "Elena",
+            "iri": "http://example.org/kinship#E",
+            "isAlive": false,
+            "type": "http://example.org/kinship#Person"
+          }
+        }
+      ],
+      "reward": 3.5,
+      "components": {
+        "format": 1.0,
+        "ontology": 2.0,
+        "answer": -1.0,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Dario",
+      "predicted": "Carla",
+      "correct": false,
+      "calls": 5,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": true,
+        "attribute_coverage": true,
+        "evidence_sufficient": true,
+        "derived_answer": "Dario",
+        "strict_success": false
+      },
+      "fixture": {
+        "id": "eldest-grandchild-audit-v1",
+        "root": "A",
+        "rule": "Select the eldest living biological grandchild of A. Spouses are excluded. The finite graph and each returned adjacency/property list are complete for this fixture. No age ties exist.",
+        "persons": {
+          "A": {
+            "fullName": "Aldo",
+            "age": 85,
+            "isAlive": false
+          },
+          "B": {
+            "fullName": "Bruno",
+            "age": 60,
+            "isAlive": true
+          },
+          "C": {
+            "fullName": "Carla",
+            "age": 30,
+            "isAlive": true
+          },
+          "D": {
+            "fullName": "Dario",
+            "age": 35,
+            "isAlive": true
+          },
+          "E": {
+            "fullName": "Elena",
+            "age": 40,
+            "isAlive": false
+          },
+          "S": {
+            "fullName": "Sofia",
+            "age": 75,
+            "isAlive": true
+          },
+          "U": {
+            "fullName": "Umberto",
+            "age": 80,
+            "isAlive": true
+          },
+          "V": {
+            "fullName": "Valerio",
+            "age": 55,
+            "isAlive": true
+          },
+          "W": {
+            "fullName": "Walter",
+            "age": 35,
+            "isAlive": true
+          }
+        },
+        "biological_edges": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "B",
+            "C"
+          ],
+          [
+            "B",
+            "D"
+          ],
+          [
+            "B",
+            "E"
+          ],
+          [
+            "U",
+            "V"
+          ],
+          [
+            "V",
+            "W"
+          ]
+        ],
+        "marriage_edges": [
+          [
+            "A",
+            "S"
+          ],
+          [
+            "S",
+            "A"
+          ]
+        ],
+        "will_clause": {
+          "requires": [
+            "isBiologicalParentOf"
+          ],
+          "excludes": [
+            "isMarriedTo"
+          ]
+        },
+        "optimal_hops": 5
+      }
+    },
+    {
+      "id": "D_age_Dario",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"B\" property=\"isBiologicalParentOf\" />\n<action tool=\"get_entity\" entity=\"C\" />\n<action tool=\"get_entity\" entity=\"D\" />\n<action tool=\"get_entity\" entity=\"E\" />\n<answer>Dario</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "c01688660a0ed43cf522af4ceba1de1d79adfdb5ec2b24755c8dcf9d8d5b46f3",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "c01688660a0ed43cf522af4ceba1de1d79adfdb5ec2b24755c8dcf9d8d5b46f3",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "B",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#C",
+              "target_label": "Carla"
+            },
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#D",
+              "target_label": "Dario"
+            },
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#E",
+              "target_label": "Elena"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "c01688660a0ed43cf522af4ceba1de1d79adfdb5ec2b24755c8dcf9d8d5b46f3",
+          "action": {
+            "tool": "get_entity",
+            "entity": "C"
+          },
+          "observation": {
+            "age": 30,
+            "fullName": "Carla",
+            "iri": "http://example.org/kinship#C",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 3,
+          "graph_sha256": "c01688660a0ed43cf522af4ceba1de1d79adfdb5ec2b24755c8dcf9d8d5b46f3",
+          "action": {
+            "tool": "get_entity",
+            "entity": "D"
+          },
+          "observation": {
+            "age": 35,
+            "fullName": "Dario",
+            "iri": "http://example.org/kinship#D",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 4,
+          "graph_sha256": "c01688660a0ed43cf522af4ceba1de1d79adfdb5ec2b24755c8dcf9d8d5b46f3",
+          "action": {
+            "tool": "get_entity",
+            "entity": "E"
+          },
+          "observation": {
+            "age": 40,
+            "fullName": "Elena",
+            "iri": "http://example.org/kinship#E",
+            "isAlive": false,
+            "type": "http://example.org/kinship#Person"
+          }
+        }
+      ],
+      "reward": 9.5,
+      "components": {
+        "format": 1.0,
+        "ontology": 2.0,
+        "answer": 5.0,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Dario",
+      "predicted": "Dario",
+      "correct": true,
+      "calls": 5,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": true,
+        "attribute_coverage": true,
+        "evidence_sufficient": true,
+        "derived_answer": "Dario",
+        "strict_success": true
+      },
+      "fixture": {
+        "id": "eldest-grandchild-audit-v1",
+        "root": "A",
+        "rule": "Select the eldest living biological grandchild of A. Spouses are excluded. The finite graph and each returned adjacency/property list are complete for this fixture. No age ties exist.",
+        "persons": {
+          "A": {
+            "fullName": "Aldo",
+            "age": 85,
+            "isAlive": false
+          },
+          "B": {
+            "fullName": "Bruno",
+            "age": 60,
+            "isAlive": true
+          },
+          "C": {
+            "fullName": "Carla",
+            "age": 30,
+            "isAlive": true
+          },
+          "D": {
+            "fullName": "Dario",
+            "age": 35,
+            "isAlive": true
+          },
+          "E": {
+            "fullName": "Elena",
+            "age": 40,
+            "isAlive": false
+          },
+          "S": {
+            "fullName": "Sofia",
+            "age": 75,
+            "isAlive": true
+          },
+          "U": {
+            "fullName": "Umberto",
+            "age": 80,
+            "isAlive": true
+          },
+          "V": {
+            "fullName": "Valerio",
+            "age": 55,
+            "isAlive": true
+          },
+          "W": {
+            "fullName": "Walter",
+            "age": 35,
+            "isAlive": true
+          }
+        },
+        "biological_edges": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "B",
+            "C"
+          ],
+          [
+            "B",
+            "D"
+          ],
+          [
+            "B",
+            "E"
+          ],
+          [
+            "U",
+            "V"
+          ],
+          [
+            "V",
+            "W"
+          ]
+        ],
+        "marriage_edges": [
+          [
+            "A",
+            "S"
+          ],
+          [
+            "S",
+            "A"
+          ]
+        ],
+        "will_clause": {
+          "requires": [
+            "isBiologicalParentOf"
+          ],
+          "excludes": [
+            "isMarriedTo"
+          ]
+        },
+        "optimal_hops": 5
+      }
+    },
+    {
+      "id": "E_isAlive_Carla",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"B\" property=\"isBiologicalParentOf\" />\n<action tool=\"get_entity\" entity=\"C\" />\n<action tool=\"get_entity\" entity=\"D\" />\n<action tool=\"get_entity\" entity=\"E\" />\n<answer>Carla</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "4f406b6527eef9b3bd3627a192d7353b2e2bacdae1c742c37bca4b2a6f65f630",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "4f406b6527eef9b3bd3627a192d7353b2e2bacdae1c742c37bca4b2a6f65f630",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "B",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#C",
+              "target_label": "Carla"
+            },
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#D",
+              "target_label": "Dario"
+            },
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#E",
+              "target_label": "Elena"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "4f406b6527eef9b3bd3627a192d7353b2e2bacdae1c742c37bca4b2a6f65f630",
+          "action": {
+            "tool": "get_entity",
+            "entity": "C"
+          },
+          "observation": {
+            "age": 30,
+            "fullName": "Carla",
+            "iri": "http://example.org/kinship#C",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 3,
+          "graph_sha256": "4f406b6527eef9b3bd3627a192d7353b2e2bacdae1c742c37bca4b2a6f65f630",
+          "action": {
+            "tool": "get_entity",
+            "entity": "D"
+          },
+          "observation": {
+            "age": 20,
+            "fullName": "Dario",
+            "iri": "http://example.org/kinship#D",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 4,
+          "graph_sha256": "4f406b6527eef9b3bd3627a192d7353b2e2bacdae1c742c37bca4b2a6f65f630",
+          "action": {
+            "tool": "get_entity",
+            "entity": "E"
+          },
+          "observation": {
+            "age": 40,
+            "fullName": "Elena",
+            "iri": "http://example.org/kinship#E",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        }
+      ],
+      "reward": 3.5,
+      "components": {
+        "format": 1.0,
+        "ontology": 2.0,
+        "answer": -1.0,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Elena",
+      "predicted": "Carla",
+      "correct": false,
+      "calls": 5,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": true,
+        "attribute_coverage": true,
+        "evidence_sufficient": true,
+        "derived_answer": "Elena",
+        "strict_success": false
+      },
+      "fixture": {
+        "id": "eldest-grandchild-audit-v1",
+        "root": "A",
+        "rule": "Select the eldest living biological grandchild of A. Spouses are excluded. The finite graph and each returned adjacency/property list are complete for this fixture. No age ties exist.",
+        "persons": {
+          "A": {
+            "fullName": "Aldo",
+            "age": 85,
+            "isAlive": false
+          },
+          "B": {
+            "fullName": "Bruno",
+            "age": 60,
+            "isAlive": true
+          },
+          "C": {
+            "fullName": "Carla",
+            "age": 30,
+            "isAlive": true
+          },
+          "D": {
+            "fullName": "Dario",
+            "age": 20,
+            "isAlive": true
+          },
+          "E": {
+            "fullName": "Elena",
+            "age": 40,
+            "isAlive": true
+          },
+          "S": {
+            "fullName": "Sofia",
+            "age": 75,
+            "isAlive": true
+          },
+          "U": {
+            "fullName": "Umberto",
+            "age": 80,
+            "isAlive": true
+          },
+          "V": {
+            "fullName": "Valerio",
+            "age": 55,
+            "isAlive": true
+          },
+          "W": {
+            "fullName": "Walter",
+            "age": 35,
+            "isAlive": true
+          }
+        },
+        "biological_edges": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "B",
+            "C"
+          ],
+          [
+            "B",
+            "D"
+          ],
+          [
+            "B",
+            "E"
+          ],
+          [
+            "U",
+            "V"
+          ],
+          [
+            "V",
+            "W"
+          ]
+        ],
+        "marriage_edges": [
+          [
+            "A",
+            "S"
+          ],
+          [
+            "S",
+            "A"
+          ]
+        ],
+        "will_clause": {
+          "requires": [
+            "isBiologicalParentOf"
+          ],
+          "excludes": [
+            "isMarriedTo"
+          ]
+        },
+        "optimal_hops": 5
+      }
+    },
+    {
+      "id": "E_isAlive_Elena",
+      "completion": "<reasoning>Check the stipulated rule.</reasoning>\n<action tool=\"follow_entity_link\" entity=\"A\" property=\"isBiologicalParentOf\" />\n<action tool=\"follow_entity_link\" entity=\"B\" property=\"isBiologicalParentOf\" />\n<action tool=\"get_entity\" entity=\"C\" />\n<action tool=\"get_entity\" entity=\"D\" />\n<action tool=\"get_entity\" entity=\"E\" />\n<answer>Elena</answer>",
+      "events": [
+        {
+          "index": 0,
+          "graph_sha256": "4f406b6527eef9b3bd3627a192d7353b2e2bacdae1c742c37bca4b2a6f65f630",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "A",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#B",
+              "target_label": "Bruno"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "graph_sha256": "4f406b6527eef9b3bd3627a192d7353b2e2bacdae1c742c37bca4b2a6f65f630",
+          "action": {
+            "tool": "follow_entity_link",
+            "entity": "B",
+            "property": "isBiologicalParentOf"
+          },
+          "observation": [
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#C",
+              "target_label": "Carla"
+            },
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#D",
+              "target_label": "Dario"
+            },
+            {
+              "property": "http://example.org/kinship#isBiologicalParentOf",
+              "target_iri": "http://example.org/kinship#E",
+              "target_label": "Elena"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "graph_sha256": "4f406b6527eef9b3bd3627a192d7353b2e2bacdae1c742c37bca4b2a6f65f630",
+          "action": {
+            "tool": "get_entity",
+            "entity": "C"
+          },
+          "observation": {
+            "age": 30,
+            "fullName": "Carla",
+            "iri": "http://example.org/kinship#C",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 3,
+          "graph_sha256": "4f406b6527eef9b3bd3627a192d7353b2e2bacdae1c742c37bca4b2a6f65f630",
+          "action": {
+            "tool": "get_entity",
+            "entity": "D"
+          },
+          "observation": {
+            "age": 20,
+            "fullName": "Dario",
+            "iri": "http://example.org/kinship#D",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        },
+        {
+          "index": 4,
+          "graph_sha256": "4f406b6527eef9b3bd3627a192d7353b2e2bacdae1c742c37bca4b2a6f65f630",
+          "action": {
+            "tool": "get_entity",
+            "entity": "E"
+          },
+          "observation": {
+            "age": 40,
+            "fullName": "Elena",
+            "iri": "http://example.org/kinship#E",
+            "isAlive": true,
+            "type": "http://example.org/kinship#Person"
+          }
+        }
+      ],
+      "reward": 9.5,
+      "components": {
+        "format": 1.0,
+        "ontology": 2.0,
+        "answer": 5.0,
+        "efficiency": 1.0,
+        "termination": 0.5,
+        "floor_adjustment": 0.0
+      },
+      "gold": "Elena",
+      "predicted": "Elena",
+      "correct": true,
+      "calls": 5,
+      "verification": {
+        "authentic": true,
+        "execution_ok": true,
+        "candidate_coverage": true,
+        "attribute_coverage": true,
+        "evidence_sufficient": true,
+        "derived_answer": "Elena",
+        "strict_success": true
+      },
+      "fixture": {
+        "id": "eldest-grandchild-audit-v1",
+        "root": "A",
+        "rule": "Select the eldest living biological grandchild of A. Spouses are excluded. The finite graph and each returned adjacency/property list are complete for this fixture. No age ties exist.",
+        "persons": {
+          "A": {
+            "fullName": "Aldo",
+            "age": 85,
+            "isAlive": false
+          },
+          "B": {
+            "fullName": "Bruno",
+            "age": 60,
+            "isAlive": true
+          },
+          "C": {
+            "fullName": "Carla",
+            "age": 30,
+            "isAlive": true
+          },
+          "D": {
+            "fullName": "Dario",
+            "age": 20,
+            "isAlive": true
+          },
+          "E": {
+            "fullName": "Elena",
+            "age": 40,
+            "isAlive": true
+          },
+          "S": {
+            "fullName": "Sofia",
+            "age": 75,
+            "isAlive": true
+          },
+          "U": {
+            "fullName": "Umberto",
+            "age": 80,
+            "isAlive": true
+          },
+          "V": {
+            "fullName": "Valerio",
+            "age": 55,
+            "isAlive": true
+          },
+          "W": {
+            "fullName": "Walter",
+            "age": 35,
+            "isAlive": true
+          }
+        },
+        "biological_edges": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "B",
+            "C"
+          ],
+          [
+            "B",
+            "D"
+          ],
+          [
+            "B",
+            "E"
+          ],
+          [
+            "U",
+            "V"
+          ],
+          [
+            "V",
+            "W"
+          ]
+        ],
+        "marriage_edges": [
+          [
+            "A",
+            "S"
+          ],
+          [
+            "S",
+            "A"
+          ]
+        ],
+        "will_clause": {
+          "requires": [
+            "isBiologicalParentOf"
+          ],
+          "excludes": [
+            "isMarriedTo"
+          ]
+        },
+        "optimal_hops": 5
+      }
+    }
+  ]
+}

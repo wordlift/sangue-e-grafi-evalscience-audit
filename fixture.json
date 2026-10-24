@@ -1,0 +1,20 @@
+{
+  "id": "eldest-grandchild-audit-v1",
+  "root": "A",
+  "rule": "Select the eldest living biological grandchild of A. Spouses are excluded. The finite graph and each returned adjacency/property list are complete for this fixture. No age ties exist.",
+  "persons": {
+    "A": {"fullName": "Aldo", "age": 85, "isAlive": false},
+    "B": {"fullName": "Bruno", "age": 60, "isAlive": true},
+    "C": {"fullName": "Carla", "age": 30, "isAlive": true},
+    "D": {"fullName": "Dario", "age": 20, "isAlive": true},
+    "E": {"fullName": "Elena", "age": 40, "isAlive": false},
+    "S": {"fullName": "Sofia", "age": 75, "isAlive": true},
+    "U": {"fullName": "Umberto", "age": 80, "isAlive": true},
+    "V": {"fullName": "Valerio", "age": 55, "isAlive": true},
+    "W": {"fullName": "Walter", "age": 35, "isAlive": true}
+  },
+  "biological_edges": [["A", "B"], ["B", "C"], ["B", "D"], ["B", "E"], ["U", "V"], ["V", "W"]],
+  "marriage_edges": [["A", "S"], ["S", "A"]],
+  "will_clause": {"requires": ["isBiologicalParentOf"], "excludes": ["isMarriedTo"]},
+  "optimal_hops": 5
+}

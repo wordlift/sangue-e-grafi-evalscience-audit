@@ -1,0 +1,27 @@
+{
+  "upstream_repository": "https://huggingface.co/spaces/cyberandy/sangue-e-grafi",
+  "upstream_commit": "bb7344811e45625b558d60c02df183f23b8a8fcb",
+  "retrieved": "2026-10-24",
+  "license_declared_in_upstream_card": "MIT",
+  "files": {
+    "reward_functions.py": {
+      "upstream_path": "src/training/reward_functions.py",
+      "sha256": "ca5a2585f4667e2080e51729f2cad8d424a5767b90c8960b9c43c8ea1e79715b"
+    },
+    "tools.py": {
+      "upstream_path": "src/graph/tools.py",
+      "sha256": "20bbb13fd51116524289e95bb2ecbf5ab76e26a1f46baa88fd2a046ddd2c1fa0"
+    },
+    "kinship.ttl": {
+      "upstream_path": "data/kinship.ttl",
+      "sha256": "e783887425d2f01881a19465e7aa137842070086414f877b9c0f6d090e485840"
+    }
+  },
+  "fixture_sha256_canonical_json": "ae8470bfd3d14d476e0f5e21edfe885f2ece500444e68662e64e72a836f1c2c9",
+  "runtime": {
+    "python": "3.14.2",
+    "rdflib": "7.6.0",
+    "httpx": "0.28.1"
+  },
+  "scope": "Constructed deterministic scorer audit, no model calls or training."
+}

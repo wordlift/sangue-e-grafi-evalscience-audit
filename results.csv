@@ -1,0 +1,14 @@
+case,calls,reward,correct,evidence_sufficient,strict_success
+complete_witness,5,9.5,True,True,True
+get_only_witness,5,3.0,True,True,True
+nonexistent_sources,5,9.5,True,False,False
+disconnected_sources,5,9.5,True,False,False
+unknown_tool,5,9.5,True,False,False
+omit_all_attributes,2,9.5,True,False,False
+omit_competitor,4,9.5,True,False,False
+blind_correct,0,2.0,True,False,False
+mention_correct,0,2.5,True,False,False
+wrong_answer,5,3.5,False,True,False
+excluded_spouse,1,0.0,False,False,False
+repeat10_wrong,10,10.0,False,False,False
+repeat10_correct,10,16.0,True,False,False
